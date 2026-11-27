@@ -1,0 +1,29 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('banners', function (Blueprint $table) {
+            $table->id();
+            $table->string('title', 150);
+            $table->string('subtitle', 255)->nullable();
+            $table->string('badge_text', 100)->nullable();
+            $table->string('image', 255);
+            $table->string('cta_text', 50)->nullable();
+            $table->string('cta_link', 255)->nullable();
+            $table->integer('sort_order')->default(0);
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('banners');
+    }
+};
